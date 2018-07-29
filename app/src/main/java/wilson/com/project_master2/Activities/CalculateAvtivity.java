@@ -44,7 +44,7 @@ public class CalculateAvtivity extends AppCompatActivity {
             BmiEvaluation();
             Log.e(TAG, "age: " + age + " sex: " + sex + " height: " + height + " weight: " + weight + " BMI: " + bmi);
 
-            /*myDB dbHelp = new myDB(CalculateAvtivity.this);
+            myDB dbHelp = new myDB(CalculateAvtivity.this);
             final SQLiteDatabase sqLiteDatabase = dbHelp.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put("age", age);
@@ -53,7 +53,7 @@ public class CalculateAvtivity extends AppCompatActivity {
             cv.put("weight", weight);
             cv.put("bmi", bmi);
             cv.put("evaluation", evaluation);
-            sqLiteDatabase.insert("person", null, cv);*/
+            sqLiteDatabase.insert("person", null, cv);
          }
       });
    }

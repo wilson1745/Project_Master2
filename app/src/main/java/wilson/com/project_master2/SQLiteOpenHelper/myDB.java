@@ -35,6 +35,16 @@ public class myDB extends SQLiteOpenHelper {
 
          db.execSQL(CREATE_TABLE);
 
+         String CREATE_PERSON = "CREATE TABLE if not exists " + TABLE_PERSON
+              + "(_id INTEGER PRIMARY KEY autoincrement,"
+              + "age INTEGER,"
+              + "sex TEXT,"
+              + "height DOUBLE,"
+              + "weight DOUBLE,"
+              + "bmi DOUBLE,"
+              + "evaluation TEXT)";
+         db.execSQL(CREATE_PERSON);
+
       } catch (Exception e) {
          Log.e(TAG, e.toString());
       }
@@ -44,15 +54,9 @@ public class myDB extends SQLiteOpenHelper {
    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
       Log.e(TAG, "database update!");
 
-      /*String CREATE_PERSON = "CREATE TABLE if not exists " + TABLE_PERSON
-              + "(_id INTEGER PRIMARY KEY autoincrement,"
-              + "age INTEGER,"
-              + "sex TEXT,"
-              + "height DOUBLE,"
-              + "weight DOUBLE,"
-              + "bmi DOUBLE,"
-              + "evaluation TEXT)";
+      db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+      db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERSON);
 
-      db.execSQL(CREATE_PERSON);*/
+      onCreate(db);
    }
 }

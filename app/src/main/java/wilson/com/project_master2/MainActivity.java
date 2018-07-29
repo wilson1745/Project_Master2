@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             ft.commitAllowingStateLoss();
          }
       }
-      Log.e("TAG", String.valueOf(fragmentList.size()));
+      Log.e("TAG", "fragmentList: " + String.valueOf(fragmentList.size()));
    }
 
    @Override
