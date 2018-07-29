@@ -1,6 +1,7 @@
 package wilson.com.project_master2.Activities;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +47,8 @@ public class CalculateAvtivity extends AppCompatActivity {
 
             myDB dbHelp = new myDB(CalculateAvtivity.this);
             final SQLiteDatabase sqLiteDatabase = dbHelp.getWritableDatabase();
+            Cursor c = sqLiteDatabase.rawQuery("SELECT * FROM records Where _id=?", new String[]{String.valueOf(1)});
+
             ContentValues cv = new ContentValues();
             cv.put("age", age);
             cv.put("sex", sex);
@@ -53,7 +56,14 @@ public class CalculateAvtivity extends AppCompatActivity {
             cv.put("weight", weight);
             cv.put("bmi", bmi);
             cv.put("evaluation", evaluation);
-            sqLiteDatabase.insert("person", null, cv);
+
+            if(c.moveToNext()) {
+               sqLiteDatabase.update("person", cv, "_id=" + String.valueOf(1), null);
+            }
+            else {
+               sqLiteDatabase.insert("person", null, cv);
+            }
+
          }
       });
    }
