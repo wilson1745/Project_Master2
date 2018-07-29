@@ -2,6 +2,7 @@ package wilson.com.project_master2.Fragments;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
@@ -16,9 +17,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -30,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -61,6 +65,9 @@ public class AlarmFragment extends Fragment {
 
    public static final String TAG = "AlarmFragment";
    private Calendar calendar;
+   PendingIntent pending_intent;
+   AlarmManager alarm_manager; //to make our alarm manager
+
    /**
     * Called when the activity is first created.
     */
@@ -109,19 +116,25 @@ public class AlarmFragment extends Fragment {
 
    public static AlarmFragment newInstance(String content) {
       Bundle bundle = new Bundle();
-
       bundle.putString("ARGS", content);
       AlarmFragment fragment = new AlarmFragment();
       fragment.setArguments(bundle);
-
       return fragment;
    }
 
    public void init(View view) {
       initViews(view);
+
       calendar = Calendar.getInstance(); //獲取日曆實例
       final Button timeBtn = (Button) view.findViewById(R.id.timeBtn); //獲取時間按鈕
 
+      // initialize our alarm manager
+      alarm_manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+
+      // Create an intent to the Alarm Receiver class
+      final Intent my_intent = new Intent(getActivity(), AlarmReceiver.class);
+
+      //設置鬧鐘
       timeBtn.setOnClickListener(new Button.OnClickListener() { //設置時間
          @Override
          public void onClick(View arg0) {
@@ -142,8 +155,12 @@ public class AlarmFragment extends Fragment {
                   //將秒和毫秒設置為0
                   calendar.set(Calendar.SECOND, 0);
                   calendar.set(Calendar.MILLISECOND, 0);
+
+                  //Log.e(TAG, "h: " + h + " m: " + m);
+
                   //建立Intent和PendingIntent來調用鬧鐘管理器
-                  Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+
+                  /*Intent intent = new Intent(getActivity(), AlarmReceiver.class);
                   PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
                   //獲取鬧鐘管理器
                   AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
@@ -151,7 +168,7 @@ public class AlarmFragment extends Fragment {
                   alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                   alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 10 * 1000, pendingIntent);
                   Log.e(TAG, "Set the time to " + formatTime(h, m));
-                  //cancelAlarmBtn.setVisibility(View.VISIBLE);
+                  //cancelAlarmBtn.setVisibility(View.VISIBLE);*/
                }
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
          }
@@ -167,6 +184,93 @@ public class AlarmFragment extends Fragment {
             AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
             alarmManager.cancel(pendingIntent);
             //cancelAlarmBtn.setVisibility(View.INVISIBLE);
+         }
+      });
+
+      //開始記錄
+      start.setOnClickListener(new View.OnClickListener() {
+         @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.KITKAT)
+         @Override
+         public void onClick(View arg0) {
+            suggest = "";
+            String x = "00";
+            hourt.setText(x);
+            mint.setText(x);
+            sec.setText(x);
+
+            findCalendar("start_time");
+            Log.e(TAG, "Date_start: " + start_time);
+
+            mHandler.removeMessages(1);
+            isstop = false;
+            mHandler.sendEmptyMessage(1);
+            Calendar cl = Calendar.getInstance();
+            cl.setTimeZone(timeZone);
+            timeOfSleep = cl.get(Calendar.HOUR_OF_DAY);
+            mSensorManager.registerListener(mSensorEventListener, mMagneticSensor, SensorManager.SENSOR_DELAY_UI);
+            mSensorManager.registerListener(mSensorEventListener, mAccelerometerSensor, SensorManager.SENSOR_DELAY_UI);
+
+            //對Android版本做相容處理，對於Android 6及以上版本需要向使用者請求授權，而低版本的則直接調用
+            if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+               //Do something here...
+            }
+            start.setVisibility(View.GONE);
+            reset.setVisibility(View.VISIBLE);
+            jishi.setVisibility(View.VISIBLE); //開始計時的字樣
+            word1.setText("睡眠開始");
+
+            // put in extra string into my_intent tells the clock that you pressed the "alarm on" button
+            my_intent.putExtra("extra", "alarm on");
+            // put in an extra int into my_intent tells the clock that you want a certain value from the drop-down menu/spinner
+            my_intent.putExtra("music", "yes");
+            // create a pending intent that delays the intent until the specified calendar time
+            pending_intent = PendingIntent.getBroadcast(getActivity(), 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            // boot from begin to now runnig time ,it includes sleep time
+            long firstTime = SystemClock.elapsedRealtime();
+            long systemTime = System.currentTimeMillis();
+            long alarmTime = calendar.getTimeInMillis();
+
+            // testing time range
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            String str = df.format(calendar.getTime());
+            String sstr = df.format(systemTime);
+            Log.e(TAG, "1. calendar.getTimeInMillis(): " + str);
+            Log.e(TAG, "1. System.currentTimeMillis(): " + sstr);
+
+            // if set the time is smaller than the current time,it will add one day,tomorrow it will ring
+            if (systemTime > alarmTime) {
+               calendar.add(Calendar.DAY_OF_YEAR, 1);
+               alarmTime = calendar.getTimeInMillis();
+            }
+            long time = alarmTime - systemTime;
+            firstTime += time;
+            String str1 = df.format(calendar.getTime());
+            Log.e(TAG, "2. calendar.getTimeInMillis(): " + str1);
+
+            // set the alarm manager
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending_intent);
+         }
+      });
+
+      //結束紀錄
+      reset.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View arg0) {
+            saveData();
+            timeusedinsec = 0;
+            isstop = true;
+            mSensorManager.unregisterListener(mSensorEventListener);
+
+            //對Android版本做相容處理，對於Android 6及以上版本需要向使用者請求授權，而低版本的則直接調用
+            if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+               //Do something here...
+            }
+            reset.setVisibility(View.GONE);
+            start.setVisibility(View.VISIBLE);
+            word1.setText("Your Sleep Length ");
          }
       });
 
@@ -192,62 +296,6 @@ public class AlarmFragment extends Fragment {
       reset   = (Button) view.findViewById(R.id.reset);
       word1   = (TextView) view.findViewById(R.id.word1);
       cancelAlarmBtn = (Button) view.findViewById(R.id.cancelAlarmBtn);
-
-      //開始記錄
-      start.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View arg0) {
-            suggest = "";
-            String x = "00";
-            hourt.setText(x);
-            mint.setText(x);
-            sec.setText(x);
-
-            findCalendar("start_time");
-            Log.e(TAG, "Date_start: " + start_time);
-
-
-            mHandler.removeMessages(1);
-            isstop = false;
-            mHandler.sendEmptyMessage(1);
-            Calendar cl = Calendar.getInstance();
-            cl.setTimeZone(timeZone);
-            timeOfSleep = cl.get(Calendar.HOUR_OF_DAY);
-            mSensorManager.registerListener(mSensorEventListener, mMagneticSensor, SensorManager.SENSOR_DELAY_UI);
-            mSensorManager.registerListener(mSensorEventListener, mAccelerometerSensor, SensorManager.SENSOR_DELAY_UI);
-
-            //對Android版本做相容處理，對於Android 6及以上版本需要向使用者請求授權，而低版本的則直接調用
-            if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-               //Do something here...
-            }
-            start.setVisibility(View.GONE);
-            reset.setVisibility(View.VISIBLE);
-            //開始計時的字樣
-            jishi.setVisibility(View.VISIBLE);
-            word1.setText("睡眠開始");
-         }
-      });
-
-      //結束紀錄
-      reset.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View arg0) {
-            saveData();
-            timeusedinsec = 0;
-            isstop = true;
-            mSensorManager.unregisterListener(mSensorEventListener);
-
-            //對Android版本做相容處理，對於Android 6及以上版本需要向使用者請求授權，而低版本的則直接調用
-            if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-               //Do something here...
-            }
-            reset.setVisibility(View.GONE);
-            start.setVisibility(View.VISIBLE);
-            word1.setText("Your Sleep Length ");
-         }
-      });
    }
 
    public String formatTime(int h, int m) {
@@ -266,18 +314,18 @@ public class AlarmFragment extends Fragment {
       Calendar cl = Calendar.getInstance();
       cl.setTimeZone(timeZone);
 
-      int year = cl.get(Calendar.YEAR);
-      int month = cl.get(Calendar.MONTH) + 1;
-      int day = cl.get(Calendar.DAY_OF_MONTH);
-      int hours = cl.get(Calendar.HOUR_OF_DAY);
+      int year    = cl.get(Calendar.YEAR);
+      int month   = cl.get(Calendar.MONTH) + 1;
+      int day     = cl.get(Calendar.DAY_OF_MONTH);
+      int hours   = cl.get(Calendar.HOUR_OF_DAY);
       int minutes = cl.get(Calendar.MINUTE);
-      int second = cl.get(Calendar.SECOND);
+      int second  = cl.get(Calendar.SECOND);
 
-      String month_s = formatZero(month);
-      String day_s = formatZero(day);
-      String hours_s = formatZero(hours);
-      String minutes_s = formatZero(minutes);
-      String second_s = formatZero(second);
+      String month_s    = formatZero(month);
+      String day_s      = formatZero(day);
+      String hours_s    = formatZero(hours);
+      String minutes_s  = formatZero(minutes);
+      String second_s   = formatZero(second);
 
       if(time.equals("start_time")) start_time = year + "." + month_s + "." + day_s + " " + hours_s + ":" + minutes_s + ":" + second_s;
       else if(time.equals("end_time")) end_time = year + "." + month_s + "." + day_s + " " + hours_s + ":" + minutes_s + ":" + second_s;
