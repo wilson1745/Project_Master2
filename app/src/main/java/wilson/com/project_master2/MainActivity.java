@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
    private ArrayList<Fragment> fragmentList;
    private FrameLayout frameLayout;
 
-   // 上次切换的Fragment
+   // 上次切換的Fragment
    private Fragment mContent;
 
    @Override
@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
          if(position < fragmentList.size()) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            Fragment from = fm.findFragmentById(R.id.layFrame); //当前的fragment
+            Fragment from = fm.findFragmentById(R.id.layFrame); //當前的fragment
 
-            Fragment to = fragmentList.get(position); //点击即将跳转的fragment
+            Fragment to = fragmentList.get(position); //點擊即將跳轉的fragment
             if(to.isAdded()) {
                ft.hide(from).show(to);
             }
@@ -93,14 +93,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                ft.hide(from).add(R.id.layFrame,to);
                if(to.isHidden()) {
                   ft.show(to);
-                  Log.e(TAG,"被隐藏了");
+                  Log.e(TAG,"被隱藏了");
                }
             }
 
             ft.commitAllowingStateLoss();
          }
       }
-      //Log.e("TAG", String.valueOf(fragmentList.size()));
+      Log.e("TAG", String.valueOf(fragmentList.size()));
    }
 
    @Override
@@ -128,33 +128,30 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
    }
 
    /**
-    * @param from 刚显示的Fragment,马上就要被隐藏了
-    * @param to 马上要切换到的Fragment，一会要显示
+    * @param from 剛顯示的Fragment,馬上就要被隱藏了
+    * @param to 馬上要切換到的Fragment，一會要顯示
     */
    private void switchFrament(Fragment from,Fragment to) {
       if(from != to){
          mContent = to;
          FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-         //才切换
-         //判断有没有被添加
+         // 才切換 判斷有沒有被添加
          if(!to.isAdded()) {
-            //to没有被添加
-            //from隐藏
+            // to沒有被添加 from隱藏
             if(from != null) {
                ft.hide(from);
             }
-            //添加to
+            // 添加to
             if(to != null) {
                ft.add(R.id.layFrame,to).commit();
             }
          }
          else {
-            //to已经被添加
-            // from隐藏
+            // to已經被添加 from隱藏
             if(from != null) {
                ft.hide(from);
             }
-            //显示to
+            // 顯示to
             if(to != null) {
                ft.show(to).commit();
             }

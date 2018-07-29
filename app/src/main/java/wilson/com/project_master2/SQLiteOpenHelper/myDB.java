@@ -10,6 +10,8 @@ public class myDB extends SQLiteOpenHelper {
    private final String TAG = "myDB";
    private static final String DB_NAME = "DB.db";
    private static final String TABLE_NAME = "records";
+   private static final String TABLE_PERSON = "person";
+
    private static final int DB_VERSION = 1;
 
    public myDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -32,6 +34,7 @@ public class myDB extends SQLiteOpenHelper {
                  + "grade DOUBLE)";        //評分
 
          db.execSQL(CREATE_TABLE);
+
       } catch (Exception e) {
          Log.e(TAG, e.toString());
       }
@@ -40,5 +43,16 @@ public class myDB extends SQLiteOpenHelper {
    @Override
    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
       Log.e(TAG, "database update!");
+
+      /*String CREATE_PERSON = "CREATE TABLE if not exists " + TABLE_PERSON
+              + "(_id INTEGER PRIMARY KEY autoincrement,"
+              + "age INTEGER,"
+              + "sex TEXT,"
+              + "height DOUBLE,"
+              + "weight DOUBLE,"
+              + "bmi DOUBLE,"
+              + "evaluation TEXT)";
+
+      db.execSQL(CREATE_PERSON);*/
    }
 }

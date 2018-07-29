@@ -162,7 +162,7 @@ public class ListFragment extends Fragment {
    }
 
    /**
-    * 需要界面重新展示时调用这个方法
+    * 需要介面重新展示時調用這個方法
     */
    @Override
    public void onHiddenChanged(boolean hidden) {

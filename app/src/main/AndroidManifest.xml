@@ -31,14 +31,20 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".Receiver.MyReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Activities.DataActivity"></activity>
+        <activity android:name=".Activities.DataActivity" />
+        <activity
+            android:name=".Activities.EmailActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.PersonalActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activities.CalculateAvtivity"></activity>
     </application>
 
 </manifest>
