@@ -44,10 +44,10 @@ public class CalculateAvtivity extends AppCompatActivity {
          public void onClick(View v) {
             BmiEvaluation();
             Log.e(TAG, "age: " + age + " sex: " + sex + " height: " + height + " weight: " + weight + " BMI: " + bmi);
-
             myDB dbHelp = new myDB(CalculateAvtivity.this);
             final SQLiteDatabase sqLiteDatabase = dbHelp.getWritableDatabase();
-            Cursor c = sqLiteDatabase.rawQuery("SELECT * FROM records Where _id=?", new String[]{String.valueOf(1)});
+            Cursor c = sqLiteDatabase.rawQuery("SELECT * FROM person Where _id=?", new String[]{String.valueOf(1)});
+
 
             ContentValues cv = new ContentValues();
             cv.put("age", age);
@@ -57,13 +57,14 @@ public class CalculateAvtivity extends AppCompatActivity {
             cv.put("bmi", bmi);
             cv.put("evaluation", evaluation);
 
-            if(c.moveToNext()) {
-               sqLiteDatabase.update("person", cv, "_id=" + String.valueOf(1), null);
-            }
-            else {
+            Log.e(TAG, "Count: " + String.valueOf(c.getCount()));
+
+            if(c.getCount() == 0) {
                sqLiteDatabase.insert("person", null, cv);
             }
-
+            else if(c.getCount() == 1) {
+               sqLiteDatabase.update("person", cv, "_id=" + String.valueOf(1), null);
+            }
          }
       });
    }
