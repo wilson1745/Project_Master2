@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_main2"
     tools:context=".Fragments.InstructFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--<ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="instructions" />
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="false"
+        android:layout_centerInParent="false"
+        android:src="@drawable/image2"/>-->
 
-</FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/expand_main" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
