@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import wilson.com.project_master2.Fragments.AlarmFragment;
+import wilson.com.project_master2.MainActivity;
 import wilson.com.project_master2.R;
 
 public class RingtonePlayingService extends Service {
@@ -41,7 +42,7 @@ public class RingtonePlayingService extends Service {
       NotificationManager notify_manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
       // set up an intent that goes to the Main Activity///////////////檢查是使用AlarmFragment還是MainActivity
-      Intent intent_main_activity = new Intent(this.getApplicationContext(), AlarmFragment.class);
+      Intent intent_main_activity = new Intent(this.getApplicationContext(), MainActivity.class);
 
       // set up a pending intent
       PendingIntent pending_intent_main_activity = PendingIntent.getActivity(this, 0, intent_main_activity, 0);
