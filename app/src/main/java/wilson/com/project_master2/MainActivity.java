@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                   //Log.e(TAG,"被隱藏了");
                }
             }
-
             ft.commitAllowingStateLoss();
          }
       }

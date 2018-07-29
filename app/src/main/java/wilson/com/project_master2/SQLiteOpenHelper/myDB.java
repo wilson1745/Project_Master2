@@ -32,7 +32,7 @@ public class myDB extends SQLiteOpenHelper {
                  + "sleepHour INTEGER,"    //總睡眠小時
                  + "timeOfSleep DOUBLE,"   //睡眠起始時間(小時幾點)
                  + "grade DOUBLE,"         //評分
-                 + "suggestion TEXT)";      //建議
+                 + "suggestion TEXT)";     //建議
 
          db.execSQL(CREATE_TABLE);
 
