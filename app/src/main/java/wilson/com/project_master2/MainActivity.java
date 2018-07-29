@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
               .addItem(new BottomNavigationItem(R.drawable.music_pressed, "Instructions")
                       .setActiveColorResource(R.color.bottombar).setInactiveIconResource(R.drawable.music_normal))
               .initialise();
-
       //onTabSelected(0);
 
       fragmentList = getFragments();
@@ -93,20 +92,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                ft.hide(from).add(R.id.layFrame,to);
                if(to.isHidden()) {
                   ft.show(to);
-                  Log.e(TAG,"被隱藏了");
+                  //Log.e(TAG,"被隱藏了");
                }
             }
 
             ft.commitAllowingStateLoss();
          }
       }
-      Log.e("TAG", "fragmentList: " + String.valueOf(fragmentList.size()));
+      //Log.e("TAG", "fragmentList: " + String.valueOf(fragmentList.size()));
    }
 
    @Override
    public void onTabUnselected(int position) {
-      if (fragmentList != null) {
-         if (position < fragmentList.size()) {
+      if(fragmentList != null) {
+         if(position < fragmentList.size()) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             Fragment fragment = fragmentList.get(position);

@@ -467,6 +467,7 @@ public class AlarmFragment extends Fragment {
       cv.put("sleepHour", sleepHour);
       cv.put("timeOfSleep", timeOfSleep);
       cv.put("grade", z);
+      cv.put("suggestion", suggest);
       sqLiteDatabase.insert("records", null, cv);
    }
 
