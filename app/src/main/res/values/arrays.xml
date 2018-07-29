@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="advance">
+        <item>Memo</item>
+        <item>Personal Information</item>
+        <item>Output Result</item>
+        <item>Language</item>
+        <item>Feedback</item>
+    </string-array>
+
+    <string-array name="instructions_main">
+        <item>Welcome</item>
+        <item>Instructions</item>
+        <item>About Snoring</item>
+        <item>About Snoring &amp; Diabetes</item>
+        <item>FAQs</item>
+    </string-array>
+
+    <string-array name="welcome">
+        <item>SnoreDiaby</item>
+        <item>Place</item>
+        <item>Playback</item>
+        <item>Intensity</item>
+    </string-array>
+
+    <string-array name="snorediaby_cont">
+        <item>
+            Welcome to SnoreDiaby: the snore recording and sleep tracking app
+        </item>
+    </string-array>
+    <string-array name="place_cont">
+        <item>
+            Place your device face down on a table next to your bed with the charger connected.
+        </item>
+    </string-array>
+    <string-array name="playback_cont">
+        <item>
+            SnoreDiaby shows you when and how loudly you snored and lets you playback audio.
+        </item>
+    </string-array>
+    <string-array name="intensity_cont">
+        <item>
+            You can test snoring remedies and lifestyle changes to try to reduce your Snore Snore (snoring intensity)
+        </item>
+    </string-array>
+
+    <string-array name="instructions">
+        <item>Introduction</item>
+        <item>Placement</item>
+        <item>Results</item>
+        <item>Important Disclaimer</item>
+    </string-array>
+
+    <string-array name="introduction_cont">
+        <item>
+            SnoreDiaby is an app that records, measures and tracks your snoring.
+            It helps thousands of people just like you to gain insights into their snoring.
+            \n\nYou can share SnoreDiaby&#8217;s reports with your doctor or dentist,
+            or experiment with snoring remedies and lifestyle changes and track their impact over time.
+        </item>
+    </string-array>
+    <string-array name="placement_cont">
+        <item>
+            It is recommended placing the device next to your bed with the microphone facing towards you.
+            Keep the charger connected if possible to ensure full night monitoring and fully charged device
+            the next day.\n\nPlacing the device face down will dim the screen and reduce battery usage.
+            \n\nNote: SnoreDiaby is sensitive to ambient noise and works best in quiet environment.
+        </item>
+    </string-array>
+    <string-array name="results_cont">
+        <item>
+            After each night you&#8217;ll receive a report showing you when and how loudly you snored with
+            a selection of audio samples.\n\nYou&#8217;ll also get a Snore Score for the night, which is a
+            measure of snoring intensity. If you experiment with snoring remedies or track factors you can
+            see how they impact your snoring by the change in your Snore Score.\n\nDon&#8217;t worry too much
+            about disk usage, one night of samples only contents 2-4 MB at the default setting.
+            You can also delete unwanted sound files and optionally activate full-night recording if you
+            want to hear everything.
+        </item>
+    </string-array>
+    <string-array name="important_disclaimer_cont">
+        <item>
+            SnoreDiaby is not a replacement for a professional sleep study and diagnosis. Snoring can be
+            symptomatic of serious sleep disorders (see the section on obstructive sleep apnea below) and you
+            should seek immediate medical attention if you are concerned by your symptoms.
+        </item>
+    </string-array>
+
+    <string-array name="about_snoring">
+        <item>What is Snoring?</item>
+        <item>Risk Factors</item>
+        <item>Obstructive Sleep Apnea</item>
+        <item>Snoring Remedies</item>
+    </string-array>
+
+    <string-array name="what_cont">
+        <item>
+            Snoring is noisy breathing whilst you sleep caused by the vibration of soft tissue in your head and neck.
+            \n\nThe exact sound you make will depend on the types of soft tissue that is vibrating. For example,
+            if the soft tissue at the back of your nose vibrates it is likely you will produce a pinched nasal sound.
+            If the tissues at the top of your mouth and the back of your throat vibrate, you will produce a louder, more
+            guttural, throaty sound. In most cases, snoring is caused by a combination of areas that are vibrating or blocked.
+            \n\nWhile you sleep your airways relax and narrows. This affects air pressure within your airways, which causes
+            the tissue to vibrate. This can also happen if your airways are partially blocked, for example if you have a cold.
+        </item>
+    </string-array>
+    <string-array name="risk_cont">
+        <item>
+            Some things that can increase your risk of habitual snoring include:
+            \n\nObesity: particularly if you have a large amount of fat around your neck.
+            \n\nAdvancing age: as you get older the muscles tend to weaken, making snoring louder and more prevalent.
+            \n\nGenetic factors: some people have a genetic predisposition for snoring due to the structure of their facial anatomy.
+            \n\nMouth breathing: drawing in air through your mouth can cause loud snoring as well as dry mouth and bad breath.
+            \n\nSeasonal factors: colds, hay fever and low humidity can all impact snoring.
+            \n\nAllergic rhinitis: a condition where the inside of your nose becomes swollen and inflamed due to an allergic reaction to substances such as dust or pollen.
+            \n\nNasal conditions: nasal polyps and deviated septum can have a major impact on snoring.
+            \n\nDrinking alcohol: alcohol relaxes your muscles when you sleep, which increase the narrowing of your airways.
+            \n\nSedatives and some types of antidepressants: in some people, these medications can have a similar effect to alcohol on the muscles.
+            \n\nSmoking: tobacco smoke can cause your airways to become inflamed, which increases the narrowing of the airways.
+        </item>
+    </string-array>
+    <string-array name="obstructive_cont">
+        <item>
+            Obstructive sleep apnea (OSA) is a condition where the walls of the throat relax and narrow during sleep, interrupting normal breathing.
+            \n\nBreathing is totally or partially interrupted for periods of 10 seconds or more, typically followed by a choking or gasping sound.
+            \n\nOSA has a high prevalence and is frequently undiagnosed.
+            \n\nSymptoms of OSA include:
+            \n\n&#183; Loud snoring
+            \n&#183; Noisy and laboured breathing
+            \n&#183; Repeated short periods where breathing is interrupted
+            \n&#183; Not feeling refreshed after waking up
+            \n&#183; Feeling very sleepy during the day
+            \n&#183; Poor memory and concentration
+            \n&#183; Night sweats
+            \n&#183; Frequently waking up during the night to urinate
+            \n&#183; Headaches, particularly in the morning
+            \n&#183; Irritability and mood swings
+            \n&#183; Depression
+            \n&#183; Loss of libido
+            \n\nObstructive sleep apnea can have very serious consequences if left untreated.
+            \n\nIf you are concerned by your symptoms you should make a full night recording of your snoring with SnoreLab and speak to your doctor.
+        </item>
+    </string-array>
+    <string-array name="remedies_cont">
+        <item>
+            As there are so many possible causes of snoring there is no one snoring remedy that works for everyone. You may need to try a few before you discover one that works for you.
+            \n\nThe most successful remedies amongst SnoreLab users include:
+            \n\nCPAP: CPAP is the outstanding treatment option for people with obstructive sleep apnea. The user wears a mask connected to a machine that creates positive airway pressure to prevent airway collapse. Take your SnoreLab recordings to your doctor to learn more. (Full night recording is recommended)
+            \n\nMouthpieces: anti-snoring dental appliances typically work by advancing the lower jaw by a few millimeters to reduce airway blockage. Cheap mouthpieces available online can be very effective but for superior comfort you may choose to invest in a custom fitted mouthpiece, which are supplied by dentists. Take your SnoreLab recordings to your dentist to learn more. (Full night recording is recommended)
+            \n\nTheravent: a special plaster that covers your nostrils to create positive pressure in your airways. Theravent works like a milder form of CPAP using the power of your own breathing rather than a machine.
+            \n\nAir purifiers: if your snoring sounds nasal, you may well benefit from an air purifier to remove dust and allergens from the air.
+            \n\nNasal products: if you snore more when your nose is blocked, you can try products that reduce nasal congestion such as neti pot, nasal strips or a nasal dilator.
+            \n\nSide sleeping: side sleeping can be effective when snoring is triggered by compression of the throat. Putting a pillow between your legs can make side sleeping more comfortable.
+            \n\nWeight loss: being overweight is one of the most common causes of snoring. You can use SnoreLab to track your weight over time to compare against your snoring.
+            \n\nLifestyle changes: lifestyle factors such as drinking alcohol can have a major impact your snoring. SnoreLab is designed to measure their impact, which may encourage you to make changes.
+        </item>
+    </string-array>
+
+    <string-array name="about_diabetes">
+        <item>What is Type 2 Diabetes?</item>
+        <item>Sleep &amp; Type 2 Diabetes</item>
+        <item>How To Improve It?</item>
+    </string-array>
+
+    <string-array name="what_t2d">
+        <item>什麼是第二型糖尿病？</item>
+    </string-array>
+    <string-array name="sleep_t2d">
+        <item>睡眠與糖尿病的關係</item>
+    </string-array>
+    <string-array name="advice_t2d">
+        <item>如何改善</item>
+    </string-array>
+
+    <string-array name="faqs">
+        <item>Device Positioning</item>
+        <item>Disk Usage</item>
+        <item>Exporting Sound Files</item>
+        <item>Two Snorers in the Room</item>
+        <item>About SnoreDiaby</item>
+    </string-array>
+
+    <string-array name="device_cont">
+        <item>
+            SnoreDiaby is sensitive to device placement and will tend to give louder readings when the device
+            is closer to the snorer. We recommend placing the device on a nightstand next to the bed with the
+            microphone facing the snorer. If this is not possible the phone can be placed on the bed. If you
+            use the app to compare your snoring between nights you should always position the device in the
+            same position to give consistent readings.
+            \n\nAlthough we advise you to keep the device connected to the charger this is not strictly necessary
+            if the device is well charged.
+            \n\nSnoreDiaby can run successfully with the device locked but this may lead the recording being
+            terminated by interruptions. SnoreLab will automatically prevent the device from locking unless you
+            press the power button, close your iPad cover, or exit the app. On older iOS devices, the phone may
+            lock automatically to minimize other activity on the phone.
+        </item>
+    </string-array>
+    <string-array name="disk_cont">
+        <item>
+            In its default setting SnoreLab uses 2-4 MB a night. If you activate full night recording, one night
+            of samples typically uses 64-128 MB. The recordings are divided into short samples allowing you to
+            mark individual samples as favorites and delete the rest.
+            \n\nYou can delete old or unwanted recordings in several ways:
+            \n\nIndividual nights: to access the &#8217;delete audio&#8217; option press the &#8217;dots&#8217;
+            button on the Snore Report or the &#8217;bin&#8217; button on the calendar page. To prevent individual
+            samples from being deleted, mark them with a &#8217;star&#8217; when playing the sample.
+            \n\nBulk deletion: the Audio Archive function in the menu is designed to quickly free disk space by
+            deleting old audio recordings. You can specify the number of recordings that you&#8217;d like to be
+            retained for historic records (or none at all) and the rest will be deleted. Recordings marked with a
+            star will not be deleted.
+        </item>
+    </string-array>
+    <string-array name="exporting_cont">
+        <item>
+            If you would like to email audio files you can use the &#8217;share&#8217; button in the top right of
+            the Snore Report. To manually select audio files press the &#8217;paperclip&#8217; button when playing a sample.
+        </item>
+    </string-array>
+    <string-array name="snorers_cont">
+        <item>
+            SnoreDiaby cannot automatically distinguish one person&#8217;s snoring from another&#8217;s.
+            \n\nIf you want to see who is the worst snorer we suggest that you run the app a few
+            times with only one person in the room and make a note of this using a custom factor
+            within the Factors menu e.g. &#8217;Steve&#8217;.
+        </item>
+    </string-array>
+    <string-array name="about_cont">
+        <item>
+            SnoreDiaby was created by a husband after his wife complained about his snoring.
+            \n\nIf you enjoy or benefit from SnoreDiaby please do leave a review in the App Store
+            and talk about it amongst your family and friends.
+            \n\nWe wish you success in your journey!
+            \n\nwww.snorediaby.com
+        </item>
+    </string-array>
+
+    <string-array name="null_cont">
+        <item>Null</item>
+    </string-array>
+
+
+
+
+
+
+
+    <string-array name="items_array_expandable_level_one">
+        <item>Level 1.1</item>
+        <item>Level 1.2</item>
+        <item>Level 1.3</item>
+        <item>Level 1.4</item>
+        <item>Level 1.5</item>
+        <item>Level 1.6</item>
+    </string-array>
+    <string-array name="items_array_expandable_level_one_one_child">
+        <item>Level 1.1.1</item>
+        <item>Level 1.1.2</item>
+        <item>Level 1.1.3</item>
+        <item>Level 1.1.4</item>
+        <item>Level 1.1.5</item>
+        <item>Level 1.1.6</item>
+        <item>Level 1.1.7</item>
+        <item>Level 1.1.8</item>
+    </string-array>
+    <string-array name="items_array_expandable_level_one_two_child">
+        <item>Level 1.2.1</item>
+        <item>Level 1.2.2</item>
+        <item>Level 1.2.3</item>
+    </string-array>
+    <string-array name="items_array_expandable_level_two">
+        <item>Second Level 01</item>
+        <item>Second Level 02</item>
+        <item>Second Level 03</item>
+        <item>Second Level 04</item>
+        <item>Second Level 05</item>
+        <item>Second Level 06</item>
+        <item>Second Level 07</item>
+    </string-array>
+    <string-array name="items_array_expandable_level_three">
+        <item>Third Level 01</item>
+        <item>Third Level 02</item>
+        <item>Third Level 03</item>
+        <item>Third Level 04</item>
+        <item>Third Level 05</item>
+    </string-array>
+
+</resources>
+
