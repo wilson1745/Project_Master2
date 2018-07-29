@@ -155,7 +155,6 @@ public class AlarmFragment extends Fragment {
                   //將秒和毫秒設置為0
                   calendar.set(Calendar.SECOND, 0);
                   calendar.set(Calendar.MILLISECOND, 0);
-
                   //Log.e(TAG, "h: " + h + " m: " + m);
 
                   //建立Intent和PendingIntent來調用鬧鐘管理器
@@ -270,7 +269,21 @@ public class AlarmFragment extends Fragment {
             }
             reset.setVisibility(View.GONE);
             start.setVisibility(View.VISIBLE);
-            word1.setText("Your Sleep Length ");
+            word1.setText("Your Sleep Length: ");
+
+            //Calendar.getInstance() gives you a Calendar object initialized with the current date / time, using the default Locale and TimeZone
+            calendar = Calendar.getInstance();
+
+            // cancel the alarm
+            alarm_manager.cancel(pending_intent);
+
+            // put extra string into my_intent tells the clock that you pressed the "alarm off" button
+            my_intent.putExtra("extra", "alarm off");
+            // also put an extra int into the alarm off section to prevent crashes in a Null Pointer Exception
+            my_intent.putExtra("music", "no");
+
+            // stop the ringtone
+            getActivity().sendBroadcast(my_intent);
          }
       });
 
