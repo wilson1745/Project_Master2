@@ -48,7 +48,6 @@ public class CalculateAvtivity extends AppCompatActivity {
             final SQLiteDatabase sqLiteDatabase = dbHelp.getWritableDatabase();
             Cursor c = sqLiteDatabase.rawQuery("SELECT * FROM person Where _id=?", new String[]{String.valueOf(1)});
 
-
             ContentValues cv = new ContentValues();
             cv.put("age", age);
             cv.put("sex", sex);
@@ -56,8 +55,6 @@ public class CalculateAvtivity extends AppCompatActivity {
             cv.put("weight", weight);
             cv.put("bmi", bmi);
             cv.put("evaluation", evaluation);
-
-            Log.e(TAG, "Count: " + String.valueOf(c.getCount()));
 
             if(c.getCount() == 0) {
                sqLiteDatabase.insert("person", null, cv);
@@ -95,7 +92,10 @@ public class CalculateAvtivity extends AppCompatActivity {
          bmi = weight/(heights*heights);
 
          //下面依照BMI給予Evaluation指示
-
+         if(bmi < 18.5) evaluation = "Underweight";
+         else if (bmi >= 18.5 || bmi <= 23.9) evaluation = "Normal weight";
+         else if (bmi >= 24 || bmi <= 27.9) evaluation = "Overweight";
+         else if (bmi >= 28) evaluation = "Obesity";
       }
    }
 }
