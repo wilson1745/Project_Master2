@@ -8,20 +8,33 @@ import wilson.com.project_master2.R;
 
 public class DataActivity extends AppCompatActivity {
 
-   TextView start_time, grade;
+   TextView start_time_v, end_time_v, hsleep_v, tsleep_v, grade_v, suggestion_v;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_data);
 
-      start_time = findViewById(R.id.start_time);
-      grade = findViewById(R.id.grade);
+      start_time_v = findViewById(R.id.start_time_v);
+      end_time_v = findViewById(R.id.end_time_v);
+      hsleep_v = findViewById(R.id.hsleep_v);
+      tsleep_v = findViewById(R.id.tsleep_v);
+      grade_v = findViewById(R.id.grade_v);
+      suggestion_v = findViewById(R.id.suggestion_v);
 
       Bundle bundle = getIntent().getExtras();
       String start_times = bundle.getString("start_time");
+      String end_time = bundle.getString("end_time");
+      String hsleep = bundle.getString("sleepHour");
+      String tsleep = bundle.getString("timeOfSleep");
       String grades = bundle.getString("grade");
-      start_time.setText(start_times);
-      grade.setText(grades);
+      String suggestion = bundle.getString("suggestion");
+
+      start_time_v.setText(start_times);
+      end_time_v.setText(end_time);
+      hsleep_v.setText(hsleep);
+      tsleep_v.setText(tsleep);
+      grade_v.setText(grades);
+      suggestion_v.setText(suggestion);
    }
 }

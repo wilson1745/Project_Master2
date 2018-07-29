@@ -118,19 +118,27 @@ public class ListFragment extends Fragment {
          @Override
          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Cursor c = db.rawQuery("SELECT * FROM records Where _id=?", new String[]{String.valueOf(id)});
-            String start_time = null, end_time, grade = null;
+            String start_time = null, end_time = null, hsleep = null, tsleep = null, grade = null, suggestion = null;
 
             while(c.moveToNext()) {
                start_time = c.getString(1);
                end_time = c.getString(2);
+               hsleep = c.getString(3);
+               tsleep = c.getString(4);
                grade = c.getString(5);
+               suggestion = c.getString(6);
+
                Log.e(TAG, "Start: " + start_time);
                Log.e(TAG, "Grad: " + grade);
             }
 
             Bundle bundle = new Bundle();
             bundle.putString("start_time", start_time);
+            bundle.putString("end_time", end_time);
+            bundle.putString("sleepHour", hsleep);
+            bundle.putString("timeOfSleep", tsleep);
             bundle.putString("grade", grade);
+            bundle.putString("suggestion", suggestion);
 
             Intent intent = new Intent(context, DataActivity.class);
             intent.putExtras(bundle);

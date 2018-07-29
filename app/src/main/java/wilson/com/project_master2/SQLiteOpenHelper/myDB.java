@@ -12,7 +12,6 @@ public class myDB extends SQLiteOpenHelper {
    private static final String DB_NAME = "DB.db";
    private static final String TABLE_NAME = "records";
    private static final String TABLE_PERSON = "person";
-
    private static final int DB_VERSION = 1;
 
    public myDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
