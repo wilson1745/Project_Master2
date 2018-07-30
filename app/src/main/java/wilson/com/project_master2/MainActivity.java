@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
    BottomNavigationBar bottomNavigationBar;
    private ArrayList<Fragment> fragmentList;
    private FrameLayout frameLayout;
-
-   // 上次切換的Fragment
-   private Fragment mContent;
+   private Fragment mContent; // 上次切換的Fragment
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +38,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
       bottomNavigationBar.setMode(BottomNavigationBar.MODE_SHIFTING);
       bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
       bottomNavigationBar
-              .addItem(new BottomNavigationItem(R.drawable.analysis_pressed, "Sleep Trend")
+              .addItem(new BottomNavigationItem(R.drawable.analysis_pressed, "Sleep Records")
                       .setActiveColorResource(R.color.bottombar).setInactiveIconResource(R.drawable.analysis_normal))
-              .addItem(new BottomNavigationItem(R.drawable.sleep_pressed, "Home")
+              .addItem(new BottomNavigationItem(R.drawable.sleep_pressed, "Start Tracking")
                       .setActiveColorResource(R.color.bottombar).setInactiveIconResource(R.drawable.sleep_normal))
               .addItem(new BottomNavigationItem(R.drawable.diary_pressed, "Advance Options")
                       .setActiveColorResource(R.color.bottombar).setInactiveIconResource(R.drawable.diary_normal))
@@ -59,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
    private ArrayList<Fragment> getFragments() {
       ArrayList<Fragment> fragments = new ArrayList<>();
 
-      fragments.add(ListFragment.newInstance("Sleep Trend"));
-      fragments.add(AlarmFragment.newInstance("Home"));
+      fragments.add(ListFragment.newInstance("Sleep Records"));
+      fragments.add(AlarmFragment.newInstance("Start Tracking"));
       fragments.add(AdvanceFragment.newInstance("Advance Options"));
       fragments.add(InstructFragment.newInstance("Instructions"));
 
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
       FragmentManager fm = getSupportFragmentManager();
       FragmentTransaction transaction = fm.beginTransaction();
 
-      transaction.add(R.id.layFrame, ListFragment.newInstance("Sleep Trend"));
+      transaction.add(R.id.layFrame, ListFragment.newInstance("Sleep Records"));
       transaction.commit();
    }
 
@@ -84,16 +82,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             Fragment from = fm.findFragmentById(R.id.layFrame); //當前的fragment
-
             Fragment to = fragmentList.get(position); //點擊即將跳轉的fragment
             if(to.isAdded()) {
                ft.hide(from).show(to);
             }
             else {
-               ft.hide(from).add(R.id.layFrame,to);
+               ft.hide(from).add(R.id.layFrame, to);
                if(to.isHidden()) {
                   ft.show(to);
-                  //Log.e(TAG,"被隱藏了");
+                  Log.e(TAG,"被隱藏了" + fragmentList.get(position));
                }
             }
             ft.commitAllowingStateLoss();
