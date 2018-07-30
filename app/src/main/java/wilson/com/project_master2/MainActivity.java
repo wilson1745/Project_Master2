@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
       bottomNavigationBar.setMode(BottomNavigationBar.MODE_SHIFTING);
       bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
       bottomNavigationBar
-              .addItem(new BottomNavigationItem(R.drawable.sleep_pressed, "Home")
-                      .setActiveColorResource(R.color.bottombar).setInactiveIconResource(R.drawable.sleep_normal))
               .addItem(new BottomNavigationItem(R.drawable.analysis_pressed, "Sleep Trend")
                       .setActiveColorResource(R.color.bottombar).setInactiveIconResource(R.drawable.analysis_normal))
+              .addItem(new BottomNavigationItem(R.drawable.sleep_pressed, "Home")
+                      .setActiveColorResource(R.color.bottombar).setInactiveIconResource(R.drawable.sleep_normal))
               .addItem(new BottomNavigationItem(R.drawable.diary_pressed, "Advance Options")
                       .setActiveColorResource(R.color.bottombar).setInactiveIconResource(R.drawable.diary_normal))
               .addItem(new BottomNavigationItem(R.drawable.music_pressed, "Instructions")
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
    private ArrayList<Fragment> getFragments() {
       ArrayList<Fragment> fragments = new ArrayList<>();
 
-      fragments.add(AlarmFragment.newInstance("Home"));
       fragments.add(ListFragment.newInstance("Sleep Trend"));
+      fragments.add(AlarmFragment.newInstance("Home"));
       fragments.add(AdvanceFragment.newInstance("Advance Options"));
       fragments.add(InstructFragment.newInstance("Instructions"));
 
@@ -72,12 +72,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
       FragmentManager fm = getSupportFragmentManager();
       FragmentTransaction transaction = fm.beginTransaction();
 
-      transaction.add(R.id.layFrame, AlarmFragment.newInstance("Home"));
+      transaction.add(R.id.layFrame, ListFragment.newInstance("Sleep Trend"));
       transaction.commit();
    }
 
    @Override
    public void onTabSelected(int position) {
+      Log.e(TAG, "onTabSelected position: " + position);
       if(fragmentList != null) {
          if(position < fragmentList.size()) {
             FragmentManager fm = getSupportFragmentManager();
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
    @Override
    public void onTabUnselected(int position) {
+      Log.e(TAG, "onTabUnselected position: " + position);
       if(fragmentList != null) {
          if(position < fragmentList.size()) {
             FragmentManager fm = getSupportFragmentManager();

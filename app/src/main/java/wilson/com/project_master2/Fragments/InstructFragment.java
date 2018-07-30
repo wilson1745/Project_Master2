@@ -40,7 +40,6 @@ public class InstructFragment extends Fragment {
       Log.e(TAG,"InstructFragment被初始化了");
       view = inflater.inflate(R.layout.fragment_instruct, container, false);
       context = getActivity();
-      Log.e(TAG, "Come into InstructFragment");
 
       // Init top level data
       List<String> listDataHeader = new ArrayList<>();
@@ -56,8 +55,8 @@ public class InstructFragment extends Fragment {
       mExpandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
          @Override
          public void onGroupExpand(int groupPosition) {
-            for (int i = 0; i < mItemHeaders.length; i++) {
-               if (groupPosition != i) {
+            for(int i = 0; i < mItemHeaders.length; i++) {
+               if(groupPosition != i) {
                   mExpandableListView.collapseGroup(i);
                }
             }

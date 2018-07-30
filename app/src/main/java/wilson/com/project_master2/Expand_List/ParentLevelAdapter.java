@@ -72,12 +72,11 @@ public class ParentLevelAdapter extends BaseExpandableListAdapter {
          if(object instanceof List) {
             List<String> stringList = new ArrayList<>();
             Collections.addAll(stringList, (String[]) ((List) object).toArray());
-
-            Log.e("TAG", "stringList.size: " + stringList.size());
+            //Log.e("TAG", "stringList.size: " + stringList.size());
 
             for(int i = 0; i < stringList.size(); i++) {
                String content = stringList.get(i);
-               Log.e("TAG", "content: " + content);
+               //Log.e("TAG", "content: " + content);
 
                switch(content) {
                   case "SnoreDiaby":
