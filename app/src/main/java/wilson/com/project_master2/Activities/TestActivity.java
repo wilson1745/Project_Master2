@@ -13,6 +13,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -60,6 +61,8 @@ public class TestActivity extends AppCompatActivity implements DebugView, View.O
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_test);
+      getSupportActionBar().setTitle("Sensor Test");
+      setBackbutton();
 
       init();
       sensor_manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -297,5 +300,27 @@ public class TestActivity extends AppCompatActivity implements DebugView, View.O
    @Override
    public boolean post(Runnable runnable) {
       return false;
+   }
+
+   private void setBackbutton() {
+      if(getSupportActionBar() != null) {
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+         getSupportActionBar().setDisplayShowHomeEnabled(true);
+      }
+   }
+
+   @Override
+   public void onBackPressed() {
+      int count = getFragmentManager().getBackStackEntryCount();
+
+      if(count == 0) super.onBackPressed();
+      else getFragmentManager().popBackStack();
+   }
+
+   @Override
+   public boolean onOptionsItemSelected(MenuItem item) {
+      if(item.getItemId() == android.R.id.home) finish();
+
+      return super.onOptionsItemSelected(item);
    }
 }

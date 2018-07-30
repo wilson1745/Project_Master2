@@ -2,6 +2,7 @@ package wilson.com.project_master2.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import wilson.com.project_master2.R;
@@ -36,5 +37,30 @@ public class DataActivity extends AppCompatActivity {
       tsleep_v.setText(tsleep);
       grade_v.setText(grades);
       suggestion_v.setText(suggestion);
+
+      getSupportActionBar().setTitle(start_times);
+      setBackbutton();
+   }
+
+   private void setBackbutton() {
+      if(getSupportActionBar() != null) {
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+         getSupportActionBar().setDisplayShowHomeEnabled(true);
+      }
+   }
+
+   @Override
+   public void onBackPressed() {
+      int count = getFragmentManager().getBackStackEntryCount();
+
+      if(count == 0) super.onBackPressed();
+      else getFragmentManager().popBackStack();
+   }
+
+   @Override
+   public boolean onOptionsItemSelected(MenuItem item) {
+      if(item.getItemId() == android.R.id.home) finish();
+
+      return super.onOptionsItemSelected(item);
    }
 }

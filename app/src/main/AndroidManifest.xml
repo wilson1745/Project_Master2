@@ -46,15 +46,20 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Activities.DataActivity" />
+        <activity
+            android:name=".Activities.DataActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.EmailActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.PersonalActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.CalculateAvtivity" />
-        <activity android:name=".Activities.TestActivity"></activity>
+        <activity
+            android:name=".Activities.CalculateAvtivity" />
+        <activity
+            android:name=".Activities.TestActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

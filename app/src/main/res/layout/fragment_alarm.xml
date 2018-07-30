@@ -114,7 +114,8 @@
                     android:background="@drawable/shape"
                     android:elevation="10dp"
                     android:text="00:00"
-                    android:textColor="@color/blue"
+
+                android:textColor="@color/blue"
                     android:textSize="26sp" />
 
                 <Button
@@ -167,7 +168,6 @@
         android:background="@drawable/shape"
         android:text="sensor test"
         android:textColor="@color/blue"
-        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toplinear" />
 
