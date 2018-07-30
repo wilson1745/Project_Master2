@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.DataActivity">
+    android:background="@drawable/bg_main"
+    tools:context="wilson.com.project_master2.Activities.DataActivity">
 
     <TextView
         android:id="@+id/start_time_v"

@@ -60,7 +60,7 @@ public class AdvanceFragment extends Fragment {
                   Toast.makeText(getActivity(), "Output Result", Toast.LENGTH_SHORT).show();
                   break;
                case 3:
-                  /*ntent = new Intent(getActivity(), LanguageActivity.class);
+                  /*intent = new Intent(getActivity(), LanguageActivity.class);
                   startActivity(intent);*/
                   Toast.makeText(getActivity(), "Languages", Toast.LENGTH_SHORT).show();
                   break;

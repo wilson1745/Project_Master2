@@ -39,6 +39,7 @@ import java.util.Calendar;
 import static android.content.Context.MODE_PRIVATE;
 import static java.lang.Math.pow;
 
+import wilson.com.project_master2.Activities.TestActivity;
 import wilson.com.project_master2.R;
 import wilson.com.project_master2.Receiver.AlarmReceiver;
 import wilson.com.project_master2.Receiver.MyReceiver;
@@ -72,7 +73,7 @@ public class AlarmFragment extends Fragment {
     * Called when the activity is first created.
     */
    private TextView hourt, maohao1, maohao2, word1, mint, sec;
-   private Button start, reset, cancelAlarmBtn;
+   private Button start, reset, cancelAlarmBtn, btn_sensor;
    private long timeusedinsec;
    private boolean isstop = false;
    private int alarmHour, alarmMinute;
@@ -124,16 +125,12 @@ public class AlarmFragment extends Fragment {
 
    public void init(View view) {
       initViews(view);
-
       calendar = Calendar.getInstance(); //獲取日曆實例
       final Button timeBtn = (Button) view.findViewById(R.id.timeBtn); //獲取時間按鈕
-
       // initialize our alarm manager
       alarm_manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-
       //建立Intent和PendingIntent來調用鬧鐘管理器 Create an intent to the Alarm Receiver class
       final Intent my_intent = new Intent(getActivity(), AlarmReceiver.class);
-
       //設置鬧鐘
       timeBtn.setOnClickListener(new Button.OnClickListener() { //設置時間
          @Override
@@ -156,7 +153,6 @@ public class AlarmFragment extends Fragment {
                   calendar.set(Calendar.SECOND, 0);
                   calendar.set(Calendar.MILLISECOND, 0);
                   //Log.e(TAG, "h: " + h + " m: " + m);
-
 
                   /*Intent intent = new Intent(getActivity(), AlarmReceiver.class);
                   PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
@@ -286,6 +282,14 @@ public class AlarmFragment extends Fragment {
          }
       });
 
+      btn_sensor.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            Intent intent = new Intent(getActivity(), TestActivity.class);
+            startActivity(intent);
+         }
+      });
+
       //獲取感測器的管理器
       mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
       mAccelerometerSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -308,6 +312,7 @@ public class AlarmFragment extends Fragment {
       reset   = (Button) view.findViewById(R.id.reset);
       word1   = (TextView) view.findViewById(R.id.word1);
       cancelAlarmBtn = (Button) view.findViewById(R.id.cancelAlarmBtn);
+      btn_sensor =view.findViewById(R.id.btn_sensor);
    }
 
    public String formatTime(int h, int m) {
@@ -410,7 +415,7 @@ public class AlarmFragment extends Fragment {
       double grade_numberOfPlay = pow(1.01, -numberOfPlay);
 
       if(numberOfPlay > 20) {
-         suggest += "睡覺玩手機會影響主人的學習哦。";
+         suggest += "睡覺玩手機會影響您隔日的學習哦。";
       }
 
       double grade_numberOfTouch;
@@ -418,7 +423,7 @@ public class AlarmFragment extends Fragment {
 
       if(numberOfTouch > 2000) {
          grade_numberOfTouch = 0.89;
-         suggest += "主人最近是不是輾轉難眠呢~睡眠品質不夠高呢~";
+         suggest += "您最近是不是輾轉難眠呢，睡眠品質不夠高呢。";
       }
       else {
          grade_numberOfTouch = 1;
@@ -447,29 +452,29 @@ public class AlarmFragment extends Fragment {
       double grade_subOfAlarm; // = (Math.pow(Math.E, (-3-x1))*Math.pow(x1+3, 3))/1.35;
 
       if(x1 > 2) {
-         suggest += "主人最近睡眠不深，不知道怎麼了？";
+         suggest += "您最近睡眠不深，不知道怎麼了？";
          grade_subOfAlarm = 0.8;
       }
       else if(x1 > -1) {
-         suggest += "主人，您的生物鐘很規律哦~希望您繼續保持呢~";
+         suggest += "您的生物鐘很規律哦，希望您繼續保持呢。";
          grade_subOfAlarm = 0.99;
       }
       else {
-         suggest += "主人最近有點賴床哦~";
+         suggest += "您最近有點賴床哦！";
          grade_subOfAlarm = 0.9;
       }
 
 
       if(sleepHour > 9.3) {
-         suggest += "主人睡的時間太長了噢~萌萌早就醒了哼~";
+         suggest += "您睡的時間太長了！";
          grade_sumOfSleep = 0.88;
       }
       else if(sleepHour > 6) {
-         suggest += "主人的睡覺時長很健康呐~";
+         suggest += "您的睡覺時長很健康呢！";
          grade_sumOfSleep = 0.96;
       }
       else {
-         suggest += "萌萌最近和主人一樣，睡眠缺乏~";
+         suggest += "您整個睡眠缺乏。";
          grade_sumOfSleep = 0.6;
       }
 
@@ -479,18 +484,18 @@ public class AlarmFragment extends Fragment {
       }
       else if (timeOfSleep >= 23) {
          grade_timeOfSleep = 0.95;
-         suggest += "另外，主人最近睡得有點遲啊~";
+         suggest += "另外，您最近睡得有點遲。";
       }
       else if (timeOfSleep > 0 && timeOfSleep < 2) {
          grade_timeOfSleep = 0.75;
-         suggest += "另外，主人最近睡得有點遲啊~";
+         suggest += "另外，您已經超過12點才睡了喔。";
       }
       else if (timeOfSleep > 11 && timeOfSleep < 15) {
          grade_timeOfSleep = 1;
       }
       else if (timeOfSleep > 2 && timeOfSleep < 6){
          grade_timeOfSleep = 0.65;
-         suggest += "最近在趕project嗎？這樣對身體不好的...\n";
+         suggest += "最近是在趕工嗎？這樣熬夜對身體不好的...\n";
       }
       else {
          grade_timeOfSleep = 0.95;

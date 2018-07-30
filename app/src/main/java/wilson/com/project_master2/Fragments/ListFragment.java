@@ -127,9 +127,8 @@ public class ListFragment extends Fragment {
                tsleep = c.getString(4);
                grade = c.getString(5);
                suggestion = c.getString(6);
-
-               Log.e(TAG, "Start: " + start_time);
-               Log.e(TAG, "Grad: " + grade);
+               //Log.e(TAG, "Start: " + start_time);
+               //Log.e(TAG, "Grad: " + grade);
             }
 
             Bundle bundle = new Bundle();
