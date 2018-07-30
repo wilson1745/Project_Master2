@@ -131,7 +131,7 @@ public class AlarmFragment extends Fragment {
       // initialize our alarm manager
       alarm_manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 
-      // Create an intent to the Alarm Receiver class
+      //建立Intent和PendingIntent來調用鬧鐘管理器 Create an intent to the Alarm Receiver class
       final Intent my_intent = new Intent(getActivity(), AlarmReceiver.class);
 
       //設置鬧鐘
@@ -157,7 +157,6 @@ public class AlarmFragment extends Fragment {
                   calendar.set(Calendar.MILLISECOND, 0);
                   //Log.e(TAG, "h: " + h + " m: " + m);
 
-                  //建立Intent和PendingIntent來調用鬧鐘管理器
 
                   /*Intent intent = new Intent(getActivity(), AlarmReceiver.class);
                   PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
